@@ -21,7 +21,8 @@ class YahooFinanceAdapter:
         risk_free = 0.05  # On hardcode pour l'instant, on branchera FRED après
 
         # Dividend yield
-        dividend_yield = info.get("dividendYield") or 0.0
+        raw = info.get("dividendYield") or 0.0
+        dividend_yield = raw if raw < 1 else raw / 100
 
         # Vol implicite — si pas fournie, on calcule une vol historique 30j
         if implied_vol is None:
