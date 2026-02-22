@@ -56,3 +56,22 @@ class YahooFinanceAdapter:
         """Retourne les maturités disponibles pour un ticker."""
         stock = yf.Ticker(ticker)
         return list(stock.options)
+
+    def get_price_history(self, ticker: str, period: str = "3mo") -> list[dict]:
+        stock = yf.Ticker(ticker)
+        hist = stock.history(period=period)
+        if hist.empty:
+            raise ValueError(f"No price history for {ticker}")
+
+        data: list[dict] = []
+        for idx, row in hist.iterrows():
+            close = float(row["Close"])
+            if close == close:  # NaN check
+                data.append(
+                    {"date": idx.strftime("%Y-%m-%d"), "close": round(close, 2)}
+                )
+
+        if not data:
+            raise ValueError(f"No valid price data for {ticker}")
+
+        return data
