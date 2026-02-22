@@ -23,9 +23,9 @@ export default function MarketDataPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 p-8">
-      <h1 className="text-3xl font-bold text-emerald-400 mb-2">DeskView</h1>
-      <p className="text-gray-400 mb-8">Equity Derivatives Risk Terminal</p>
+    <div className="max-w-7xl mx-auto px-8 py-8">
+      <h2 className="text-2xl font-bold text-white mb-1">Market Data</h2>
+      <p className="text-gray-500 text-sm mb-8">Données marché en temps réel</p>
 
       {/* Search bar */}
       <div className="flex gap-3 mb-8">

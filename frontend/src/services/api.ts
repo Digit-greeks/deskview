@@ -51,4 +51,14 @@ export const getGreeks = async (request: GreeksRequest): Promise<GreeksResponse>
   return response.data
 }
 
+export interface PricePoint {
+  date: string
+  close: number
+}
+
+export const getPriceHistory = async (ticker: string, period = '3mo'): Promise<PricePoint[]> => {
+  const response = await api.get(`/price-history/${ticker}?period=${period}`)
+  return response.data.data
+}
+
 export default api
