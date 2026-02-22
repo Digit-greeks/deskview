@@ -3,7 +3,11 @@ from pydantic import BaseModel
 from datetime import date
 from src.read.adapters.market_data.yahoo_finance_adapter import YahooFinanceAdapter
 from src.write.adapters.pricing.black_scholes_adapter import BlackScholesAdapter
-from src.shared.domain.entities.option_contract import OptionContract, OptionType, Underlying
+from src.shared.domain.entities.option_contract import (
+    OptionContract,
+    OptionType,
+    Underlying,
+)
 
 router = APIRouter(prefix="/api", tags=["greeks"])
 market_adapter = YahooFinanceAdapter()
@@ -38,7 +42,9 @@ def get_greeks(request: GreeksRequest):
 
         contract = OptionContract(
             underlying=Underlying(ticker=request.ticker.upper()),
-            option_type=OptionType.CALL if request.option_type == "call" else OptionType.PUT,
+            option_type=OptionType.CALL
+            if request.option_type == "call"
+            else OptionType.PUT,
             strike=request.strike,
             maturity=request.maturity,
             quantity=request.quantity,

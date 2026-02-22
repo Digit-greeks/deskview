@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.read.web.routers.market_data_router import router as market_data_router
 from src.read.web.routers.greeks_router import router as greeks_router
+
 app = FastAPI(
     title="DeskView API",
     description="Equity Derivatives Risk Terminal",

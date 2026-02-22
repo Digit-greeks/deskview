@@ -1,15 +1,13 @@
 import yfinance as yf
 import numpy as np
-from datetime import date
 from src.shared.domain.value_objects.market_data import MarketData
 
 
 class YahooFinanceAdapter:
-
     def get_market_data(self, ticker: str, implied_vol: float = None) -> MarketData:
         """Récupère les données de marché pour un ticker."""
         stock = yf.Ticker(ticker)
-        
+
         # Spot price
         info = stock.info
         spot = info.get("currentPrice") or info.get("regularMarketPrice")
