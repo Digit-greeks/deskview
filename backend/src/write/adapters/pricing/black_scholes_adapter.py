@@ -1,6 +1,8 @@
+from datetime import date
+
 import numpy as np
 from scipy.stats import norm
-from datetime import date
+
 from src.shared.domain.value_objects.greeks import Greeks
 
 
@@ -27,13 +29,9 @@ class BlackScholesAdapter:
         d1 = self._d1(S, K, T, r, q, sigma)
         d2 = self._d2(d1, sigma, T)
         if contract.is_call():
-            price = S * np.exp(-q * T) * norm.cdf(d1) - K * np.exp(-r * T) * norm.cdf(
-                d2
-            )
+            price = S * np.exp(-q * T) * norm.cdf(d1) - K * np.exp(-r * T) * norm.cdf(d2)
         else:
-            price = K * np.exp(-r * T) * norm.cdf(-d2) - S * np.exp(-q * T) * norm.cdf(
-                -d1
-            )
+            price = K * np.exp(-r * T) * norm.cdf(-d2) - S * np.exp(-q * T) * norm.cdf(-d1)
         return price * abs(contract.quantity)
 
     def greeks(self, contract, market_data):

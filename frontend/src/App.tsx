@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <BookProvider>
-        <div className="min-h-screen bg-[#16161A] text-white">
+        <div className="min-h-screen bg-[#131316] text-white">
           <NavBar />
           <Routes>
             <Route path="/" element={<BookPage />} />

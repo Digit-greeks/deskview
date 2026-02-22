@@ -1,12 +1,12 @@
 from dataclasses import dataclass, field
-from typing import List
-from .position import Position
+
 from ..value_objects.greeks import Greeks
+from .position import Position
 
 
 @dataclass
 class Book:
-    positions: List[Position] = field(default_factory=list)
+    positions: list[Position] = field(default_factory=list)
 
     def add_position(self, position: Position) -> None:
         self.positions.append(position)
@@ -17,7 +17,7 @@ class Book:
     def is_empty(self) -> bool:
         return len(self.positions) == 0
 
-    def aggregate_greeks(self, greeks_per_position: List[Greeks]) -> Greeks:
+    def aggregate_greeks(self, greeks_per_position: list[Greeks]) -> Greeks:
         """Agrège les Greeks de toutes les positions du book."""
         if not greeks_per_position:
             return Greeks(0.0, 0.0, 0.0, 0.0, 0.0)

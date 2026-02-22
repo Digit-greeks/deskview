@@ -18,7 +18,7 @@ function Slider({ label, value, min, max, step, format, onChange, color }: Slide
   const pct = ((value - min) / (max - min)) * 100
 
   return (
-    <div className="bg-[#1F1F28] border border-[#333340] rounded-lg p-4">
+    <div className="bg-[#1a1a22] border border-[#252530] rounded-lg p-4">
       <div className="flex items-center justify-between mb-3">
         <span className={`text-xs font-bold uppercase tracking-wider ${color}`}>{label}</span>
         <span className={`font-mono font-bold text-sm ${value === 0 ? 'text-slate-500' : value > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
@@ -32,14 +32,14 @@ function Slider({ label, value, min, max, step, format, onChange, color }: Slide
         step={step}
         value={value}
         onChange={(e) => onChange(parseFloat(e.target.value))}
-        className="w-full accent-amber-400 cursor-pointer"
-        style={{ background: `linear-gradient(to right, #fbbf24 ${pct}%, #2A2A35 ${pct}%)` }}
+        className="w-full accent-[#f97316] cursor-pointer"
+        style={{ background: `linear-gradient(to right, #f97316 ${pct}%, #1e1e26 ${pct}%)` }}
       />
       <div className="flex justify-between mt-1.5">
         <span className="text-gray-600 text-xs font-mono">{format(min)}</span>
         <button
           onClick={() => onChange(0)}
-          className="text-gray-600 hover:text-amber-400 text-xs transition-colors"
+          className="text-gray-600 hover:text-[#f97316] text-xs transition-colors"
         >
           reset
         </button>
@@ -56,10 +56,10 @@ function PnLBar({ label, value, color, maxAbs }: { label: string; value: number;
   const isPositive = value >= 0
 
   return (
-    <div className="flex items-center gap-4 py-2.5 border-b border-[#333340] last:border-0">
+    <div className="flex items-center gap-4 py-2.5 border-b border-[#252530] last:border-0">
       <span className={`text-xs font-bold uppercase tracking-wider w-14 flex-shrink-0 ${color}`}>{label}</span>
       <div className="flex-1 flex items-center gap-2">
-        <div className="flex-1 h-1.5 bg-[#333340] rounded-full overflow-hidden">
+        <div className="flex-1 h-1.5 bg-[#252530] rounded-full overflow-hidden">
           <div
             className={`h-full rounded-full transition-all ${isPositive ? 'bg-emerald-500' : 'bg-red-500'}`}
             style={{ width: `${pct * 100}%` }}
@@ -115,7 +115,7 @@ export default function SimulatorPage() {
       <div className="max-w-7xl mx-auto px-8 py-8">
         <h2 className="text-2xl font-bold text-white mb-1">Shock Simulator</h2>
         <p className="text-gray-400 text-sm mb-8">PnL Explain en temps réel</p>
-        <div className="border border-dashed border-[#333340] rounded-xl h-64 flex flex-col items-center justify-center">
+        <div className="border border-dashed border-[#252530] rounded-xl h-64 flex flex-col items-center justify-center">
           <p className="text-gray-500">Votre book est vide</p>
           <p className="text-gray-600 text-sm mt-1">Ajoutez des positions dans l'onglet Book pour commencer</p>
         </div>
@@ -192,7 +192,7 @@ export default function SimulatorPage() {
           </div>
 
           {/* Breakdown */}
-          <div className="bg-[#1F1F28] border border-[#333340] rounded-lg p-4">
+          <div className="bg-[#1a1a22] border border-[#252530] rounded-lg p-4">
             <PnLBar label="Delta"  value={pnl.deltaPnl} color="text-blue-400"   maxAbs={maxAbs} />
             <PnLBar label="Gamma"  value={pnl.gammaPnl} color="text-purple-400" maxAbs={maxAbs} />
             <PnLBar label="Vega"   value={pnl.vegaPnl}  color="text-yellow-400" maxAbs={maxAbs} />
@@ -201,7 +201,7 @@ export default function SimulatorPage() {
           </div>
 
           {/* Greeks recap */}
-          <div className="mt-4 bg-[#1F1F28] border border-[#333340] rounded-lg p-4">
+          <div className="mt-4 bg-[#1a1a22] border border-[#252530] rounded-lg p-4">
             <p className="text-gray-500 text-xs uppercase tracking-wider mb-3">Greeks du book</p>
             <div className="grid grid-cols-5 gap-2 text-center">
               {[

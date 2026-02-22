@@ -1,5 +1,7 @@
-import pytest
 from datetime import date, timedelta
+
+import pytest
+
 from src.shared.domain.entities.option_contract import (
     OptionContract,
     OptionType,

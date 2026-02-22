@@ -1,8 +1,11 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.read.web.routers.market_data_router import router as market_data_router
+
 from src.read.web.routers.greeks_router import router as greeks_router
-import os
+from src.read.web.routers.market_data_router import router as market_data_router
+from src.read.web.routers.vol_surface_router import router as vol_surface_router
 
 app = FastAPI(
     title="DeskView API",
@@ -25,6 +28,7 @@ app.add_middleware(
 
 app.include_router(market_data_router)
 app.include_router(greeks_router)
+app.include_router(vol_surface_router)
 
 
 @app.get("/health")
