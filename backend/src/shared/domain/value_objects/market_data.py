@@ -9,4 +9,3 @@ class MarketData:
     risk_free_rate: float
     dividend_yield: float = 0.0
     timestamp: datetime = None
-    

@@ -45,18 +45,24 @@ def get_price_history(ticker: str, period: str = Query(default="3mo")):
         stock = yf.Ticker(ticker.upper())
         hist = stock.history(period=period)
         if hist.empty:
-            raise HTTPException(status_code=404, detail=f"No price history for {ticker}")
-        
+            raise HTTPException(
+                status_code=404, detail=f"No price history for {ticker}"
+            )
+
         # Filter out NaN values and convert to list
         data = []
         for idx, row in hist.iterrows():
             close = float(row["Close"])
             if not (close != close):  # Check if NaN (NaN != NaN is True)
-                data.append({"date": idx.strftime("%Y-%m-%d"), "close": round(close, 2)})
-        
+                data.append(
+                    {"date": idx.strftime("%Y-%m-%d"), "close": round(close, 2)}
+                )
+
         if not data:
-            raise HTTPException(status_code=404, detail=f"No valid price data for {ticker}")
-        
+            raise HTTPException(
+                status_code=404, detail=f"No valid price data for {ticker}"
+            )
+
         return {"ticker": ticker.upper(), "data": data, "period": period}
     except HTTPException:
         raise

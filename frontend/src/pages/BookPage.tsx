@@ -69,9 +69,9 @@ function PriceChart({ data }: { data: PricePoint[] }) {
 
   return (
     <div className="relative">
-      <svg 
-        width="100%" 
-        viewBox={`0 0 ${W} ${H}`} 
+      <svg
+        width="100%"
+        viewBox={`0 0 ${W} ${H}`}
         className="overflow-visible"
       >
         <defs>

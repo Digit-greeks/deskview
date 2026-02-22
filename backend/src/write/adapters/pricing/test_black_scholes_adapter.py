@@ -1,6 +1,10 @@
 import pytest
 from datetime import date, timedelta
-from src.shared.domain.entities.option_contract import OptionContract, OptionType, Underlying
+from src.shared.domain.entities.option_contract import (
+    OptionContract,
+    OptionType,
+    Underlying,
+)
 from src.shared.domain.value_objects.market_data import MarketData
 from src.write.adapters.pricing.black_scholes_adapter import BlackScholesAdapter
 
