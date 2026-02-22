@@ -1,4 +1,5 @@
 import pytest
+
 from src.read.adapters.market_data.yahoo_finance_adapter import YahooFinanceAdapter
 
 

@@ -1,5 +1,6 @@
-import yfinance as yf
 import numpy as np
+import yfinance as yf
+
 from src.shared.domain.value_objects.market_data import MarketData
 
 
@@ -67,9 +68,7 @@ class YahooFinanceAdapter:
         for idx, row in hist.iterrows():
             close = float(row["Close"])
             if close == close:  # NaN check
-                data.append(
-                    {"date": idx.strftime("%Y-%m-%d"), "close": round(close, 2)}
-                )
+                data.append({"date": idx.strftime("%Y-%m-%d"), "close": round(close, 2)})
 
         if not data:
             raise ValueError(f"No valid price data for {ticker}")

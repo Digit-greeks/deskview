@@ -61,4 +61,63 @@ export const getPriceHistory = async (ticker: string, period = '3mo'): Promise<P
   return response.data.data
 }
 
+// ── Vol Surface ────────────────────────────────────────────────────────────────
+
+export interface MarketIVPoint {
+  strike: number
+  maturity: number
+  maturity_str: string
+  iv: number           // in %, e.g. 25.4
+  moneyness: number
+  option_type: 'call' | 'put'
+  volume: number
+}
+
+export interface MarketSurfaceResponse {
+  ticker: string
+  spot: number
+  r: number
+  q: number
+  n_points: number
+  points: MarketIVPoint[]
+}
+
+export interface HestonParams {
+  v0: number
+  kappa: number
+  theta: number
+  sigma_v: number
+  rho: number
+  rmse: number
+  success: boolean
+  n_points: number
+}
+
+export interface HestonSurface {
+  strikes: number[]
+  moneyness: number[]
+  maturities_years: number[]
+  implied_vols: (number | null)[][]  // [T_idx][K_idx], values in %
+}
+
+export interface HestonSurfaceResponse {
+  ticker: string
+  spot: number
+  r: number
+  q: number
+  params: HestonParams
+  market_scatter: MarketIVPoint[]
+  surface: HestonSurface
+}
+
+export const getMarketSurface = async (ticker: string): Promise<MarketSurfaceResponse> => {
+  const response = await api.get(`/vol-surface/${ticker}/market`)
+  return response.data
+}
+
+export const getHestonSurface = async (ticker: string): Promise<HestonSurfaceResponse> => {
+  const response = await api.get(`/vol-surface/${ticker}/heston`)
+  return response.data
+}
+
 export default api
